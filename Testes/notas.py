@@ -1,5 +1,6 @@
+from tkinter import messagebox
 
-nome=input('Digite seu nome: ')
+nome= (input('Digite seu nome: '))
 idade= int(input('Digite sua idade: '))
 
     
@@ -9,13 +10,17 @@ media= (p1+p2)/2
      
 
 if media < 10 & idade < 18:
-    print(f"{nome} voce foi reprovado por falta de nota e por idade incompativel!")
+    messagebox.showinfo("iNFO",\
+        f'{nome} voce foi reprovado por falta de nota e por idade incompativel!')
 elif media < 10:
-    print(f'{nome} voce foi reprovado por falta de nota!!')
+    messagebox.showinfo(f'INFO',\
+       f'{nome} voce foi reprovado por falta de nota!!')
 elif idade < 18:
-     print(f'{nome} voce foi reprovado pois sua idade é incompativel!!')
+     messagebox.showinfo('iNFO',\
+     f'{nome} voce foi reprovado pois sua idade é incompativel!!')
 else:
-    print('Você passou!!')
+    messagebox.showinfo('INFO',\
+         'Você passou!!')
         
 
 
