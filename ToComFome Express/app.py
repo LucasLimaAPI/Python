@@ -6,6 +6,8 @@ restaurantes = [{'nome':'Praça', 'categoria':'Brasileira', 'ativo':False},
                 {'nome':'Madera', 'categoria':'Portuguesa', 'ativo':False},
                 {'nome':'Ço-vo', 'categoria':'francesa', 'ativo':False}]
 
+
+
 def exibir_nome_do_programa():
       print("""
 ████████████████████████████████████████████████████████████████████████████████████████████████████
@@ -69,6 +71,7 @@ def exibir_subtitulo(texto):
 
 
 def cadastrar_restaurante():
+   
       '''Essa função é responsável por cadastrar um novo restaurante.'''#docsctrings resposáveis por facilitar o entendimento do codigo
       exibir_subtitulo('Cadastro de um novo retaurante.\n')
       nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
@@ -77,10 +80,13 @@ def cadastrar_restaurante():
       restaurantes.append(dados_do_restaurante)#Pegar o nome e colocar na lista restaurantes.
       print(f'O restaurante {nome_do_restaurante} foi cadastrado.\n')
       
+ 
+
       voltar_menu()
 
 
 def listar_restaurantes():
+      
       '''Essa função é responsável por listar os restaurantes cadastrados.'''
       exibir_subtitulo('Listando os restaurantes\n')
       
@@ -91,6 +97,8 @@ def listar_restaurantes():
             categoria = restaurante['categoria']
             ativo = 'ativado' if restaurante['ativo'] else 'desativado'
             print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}') #ljust() uma funcao que separa de forma
+
+      
 
       voltar_menu()
 
