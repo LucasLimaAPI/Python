@@ -1,4 +1,5 @@
 from modelos.avaliacao import Avaliacao
+from modelos.cardapio.item_cardapio import ItemCardapio
 class Restaurante:
     restaurantes = []
 
@@ -10,6 +11,7 @@ class Restaurante:
         self._categoria = categoria.title()
         self._ativo= False # o underline deixará como protegido e informa que este atributo não deve ser mexido
         self._avaliacao = []
+        self.cardapio = []
         Restaurante.restaurantes.append(self)
 
     def __str__(self):
@@ -42,3 +44,16 @@ class Restaurante:
         quantidade_notas = len(self._avaliacao)
         media = round(soma_das_notas / quantidade_notas, 1)
         return media
+
+
+   # def add_bebida_no_cardapio(self, drink):
+    #    self.cardapio.append(drink)
+
+    #def add_prato_no_cardapio(self, prato):
+     #   self.cardapio.append(prato)
+
+    def add_no_cardapio(self, item):#isistance vai ser verdadeira se esse item que passamos como argumento for uma instancia da classe cardapio ou se for um derivado da classe.
+        if isinstance(item, ItemCardapio): #isinstance ele pega o item que estamos colocando e compara com o item cardápio para verificar se ele faz parte da classe, porém precisamos improtar o item_cardapio.
+            self._cardapio.append(item)
+
+
