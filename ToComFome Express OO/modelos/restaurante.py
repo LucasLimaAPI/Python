@@ -11,7 +11,7 @@ class Restaurante:
         self._categoria = categoria.title()
         self._ativo= False # o underline deixará como protegido e informa que este atributo não deve ser mexido
         self._avaliacao = []
-        self.cardapio = []
+        self._cardapio = []
         Restaurante.restaurantes.append(self)
 
     def __str__(self):
@@ -46,14 +46,20 @@ class Restaurante:
         return media
 
 
-   # def add_bebida_no_cardapio(self, drink):
-    #    self.cardapio.append(drink)
-
-    #def add_prato_no_cardapio(self, prato):
-     #   self.cardapio.append(prato)
-
     def add_no_cardapio(self, item):#isistance vai ser verdadeira se esse item que passamos como argumento for uma instancia da classe cardapio ou se for um derivado da classe.
         if isinstance(item, ItemCardapio): #isinstance ele pega o item que estamos colocando e compara com o item cardápio para verificar se ele faz parte da classe, porém precisamos improtar o item_cardapio.
             self._cardapio.append(item)
+
+    @property # colcoar property para somente exibir
+    #Metodo para criar o cardapio
+    def exibir_cardapio(self):
+        print(f'Cardapio do restaurante {self._nome}')
+        for i,item in enumerate(self._cardapio,start=1):# funcão capaz de enumerar
+            if hasattr(item,'description'):# hasattr = se tiver atributo
+                mensagem_prato = f'{i}. Nome:{item._nome} | Preço: R${item._preco} | Descrição: {item.description}'
+                print(mensagem_prato)
+            else:
+                mensagem_bebida = f'{i}. Nome:{item._nome} | Preço: R${item._preco} | Tamanho {item.size}'
+                print(mensagem_bebida)
 
 
