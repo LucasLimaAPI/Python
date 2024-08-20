@@ -1,5 +1,6 @@
 from fastapi import FastAPI,Query
 import requests
+
 #Forma de visualizar todos os endpoints.
 
 
