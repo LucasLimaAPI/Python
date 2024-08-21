@@ -3,20 +3,26 @@ print("Bem vindo ao meu jogo de Adivinhação!")
 print("*************************************")
 
 numero_secreto = 22
-palpite = int(input('Digite o seu número: '))
-acertou = numero_secreto == palpite
-maior = palpite > numero_secreto
-menor = palpite < numero_secreto
+total_de_tentativas = 3
+rodada = 1
 
-print("Você digitou", palpite)
+while(rodada <= total_de_tentativas):
+  print("Tentativa",rodada,"de", total_de_tentativas)
+  palpite = int(input('Digite o seu número: '))
+  acertou = numero_secreto == palpite
+  maior = palpite > numero_secreto
+  menor = palpite < numero_secreto
 
-if acertou:
-  print("Você Acertou!!")
-else:
-  if maior:
-    print("Você errou, talvez seu número seja menor!")
+  print("Você digitou", palpite)
+
+  if acertou:
+    print("Você Acertou!!")
   else:
-    menor
-    print("Você errou, talvez seu número seja maior!")
+    if maior:
+     print("Você errou, talvez seu número seja menor!")
+    else:
+      menor
+      print("Você errou, talvez seu número seja maior!")
+      rodada = rodada + 1
 
 print("Fim de jogo.")
