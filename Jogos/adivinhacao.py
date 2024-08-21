@@ -3,12 +3,20 @@ print("Bem vindo ao meu jogo de Adivinhação!")
 print("*************************************")
 
 numero_secreto = 22
-
-palpite: int = int(input('Digite o seu número: '))
+palpite = int(input('Digite o seu número: '))
+acertou = numero_secreto == palpite
+maior = palpite > numero_secreto
+menor = palpite < numero_secreto
 
 print("Você digitou", palpite)
 
-if numero_secreto == palpite:
+if acertou:
   print("Você Acertou!!")
 else:
-  print("Você errou, o número era : ", numero_secreto)
+  if maior:
+    print("Você errou, talvez seu número seja menor!")
+  else:
+    menor
+    print("Você errou, talvez seu número seja maior!")
+
+print("Fim de jogo.")
