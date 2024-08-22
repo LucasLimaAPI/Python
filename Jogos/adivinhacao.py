@@ -1,13 +1,15 @@
+from scipy.optimize import brent
+
 print("*************************************")
 print("Bem vindo ao meu jogo de Adivinhação!")
 print("*************************************")
 
 numero_secreto = 22
 total_de_tentativas = 3
-rodada = 1
 
-while(rodada <= total_de_tentativas):
-  print("Tentativa",rodada,"de", total_de_tentativas)
+
+for rodada in range(1,total_de_tentativas + 1):
+  print("Tentativa {} de {}".format(rodada,total_de_tentativas))
   palpite = int(input('Digite o seu número: '))
   acertou = numero_secreto == palpite
   maior = palpite > numero_secreto
@@ -17,12 +19,12 @@ while(rodada <= total_de_tentativas):
 
   if acertou:
     print("Você Acertou!!")
+    break
   else:
     if maior:
      print("Você errou, talvez seu número seja menor!")
     else:
       menor
       print("Você errou, talvez seu número seja maior!")
-      rodada = rodada + 1
 
 print("Fim de jogo.")
