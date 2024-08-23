@@ -1,9 +1,13 @@
+import random
+
 print("*************************************")
 print("Bem vindo ao meu jogo de Adivinhação!")
 print("*************************************")
 
-numero_secreto = 22
+numero_secreto = random.randint(1,101)
 total_de_tentativas = 3
+
+print(numero_secreto)
 
 for rodada in range(1,total_de_tentativas + 1):
   print(f"Tentativa {rodada} de {total_de_tentativas}")
