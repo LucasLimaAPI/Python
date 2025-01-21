@@ -69,13 +69,13 @@ def create_xml(txt_data, df, output_file_path):
 
             # Adiciona subelementos ao evento
             ide_evento = ET.SubElement(evt, "ideEvento")
-            ET.SubElement(ide_evento, "indRetificacao").text = "1"  # FALTA
-            ET.SubElement(ide_evento, "tpAmb").text = "1"  # FALTA
-            ET.SubElement(ide_evento, "aplicEmi").text = "2"  # FALTA
-            ET.SubElement(ide_evento, "verAplic").text = "ATLAS/PAS"  # FALTA
+            ET.SubElement(ide_evento, "indRetificacao").text = "1"  # 
+            ET.SubElement(ide_evento, "tpAmb").text = "1"  # 
+            ET.SubElement(ide_evento, "aplicEmi").text = "2"  # 
+            ET.SubElement(ide_evento, "verAplic").text = "ATLAS/PAS"  #
 
             ide_declarante = ET.SubElement(evt, "ideDeclarante")
-            ET.SubElement(ide_declarante, "cnpjDeclarante").text = "04257795000179"
+            ET.SubElement(ide_declarante, "cnpjDeclarante").text = "CNPJ"
 
             ide_declarado = ET.SubElement(evt, "ideDeclarado")
             ET.SubElement(ide_declarado, "tpNI").text = "1"
@@ -105,15 +105,15 @@ def create_xml(txt_data, df, output_file_path):
             ET.SubElement(ide_declarado, "PaisNacionalidade").text = "BR"
 
             mes_caixa = ET.SubElement(evt, "mesCaixa")
-            ET.SubElement(mes_caixa, "anoMesCaixa").text = "202407"  # COLOCAR NA MÃO
+            ET.SubElement(mes_caixa, "anoMesCaixa").text = ""  
 
             mov_op_fin = ET.SubElement(mes_caixa, "movOpFin")
             conta = ET.SubElement(mov_op_fin, "Conta")
             info_conta = ET.SubElement(conta, "infoConta")
             ET.SubElement(info_conta, "Reportavel").text = "BR"
-            ET.SubElement(info_conta, "tpConta").text = ""  # FALTA
-            ET.SubElement(info_conta, "subTpConta").text = ""  # FALTA
-            ET.SubElement(info_conta, "tpNumConta").text = ""  # FALTA
+            ET.SubElement(info_conta, "tpConta").text = ""  # 
+            ET.SubElement(info_conta, "subTpConta").text = ""  # 
+            ET.SubElement(info_conta, "tpNumConta").text = ""  # 
             ET.SubElement(info_conta, "numConta").text = str(cliente_info['Conta'].values[0])  # Converte para string
             ET.SubElement(info_conta, "tpRelacaoDeclarado").text = "1"
             ET.SubElement(info_conta, "NoTitulares").text = "1"
@@ -129,8 +129,8 @@ def create_xml(txt_data, df, output_file_path):
             ET.SubElement(balanco_conta, "totDebitosMesmaTitularidade").text = "0,00"  # Precisa arrumar
 
             pgtos_acum = ET.SubElement(info_conta, "PgtosAcum")
-            ET.SubElement(pgtos_acum, "tpPgto").text = "CRS503"
-            ET.SubElement(pgtos_acum, "totPgtosAcum").text = "1014,52"
+            ET.SubElement(pgtos_acum, "tpPgto").text = ""
+            ET.SubElement(pgtos_acum, "totPgtosAcum").text = ""
         else:
             print(f"Nenhuma informação encontrada no Excel para {nome}.")  # Depuração
 
