@@ -122,7 +122,10 @@ def create_xml(converted_df, base_df, saldos_df, output_path, selected_month):
         ET.SubElement(balanco, "totDebitosMesmaTitularidade").text = "0,00"
 
         pgtos_acum = ET.SubElement(info_conta, "PgtosAcum")
-        ET.SubElement(pgtos_acum, "tpPgto").text = "999"
+        if tot_pgtos_acum == 0.00:
+            ET.SubElement(pgtos_acum, "tpPgto").text = "999"
+        else:
+            ET.SubElement(pgtos_acum, "tpPgto").text = "CRS503"
         ET.SubElement(pgtos_acum, "totPgtosAcum").text = f"{tot_pgtos_acum:.2f}".replace('.', ',')
     
     tree = ET.ElementTree(root)
