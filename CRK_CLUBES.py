@@ -25,6 +25,8 @@ def get_month_index(month_abbr):
              'JUL': 7, 'AGO': 8, 'SET': 9, 'OUT': 10, 'NOV': 11, 'DEZ': 12}
     return meses.get(month_abbr.upper(), 0)
 
+import xml.etree.ElementTree as ET
+
 def create_xml(converted_df, base_df, saldos_df, output_path, selected_month):
     root = ET.Element("eFinanceira")
     lote_eventos = ET.SubElement(root, "loteEventos")
@@ -87,19 +89,41 @@ def create_xml(converted_df, base_df, saldos_df, output_path, selected_month):
         ET.SubElement(ide_declarado, "NomeDeclarado").text = nome_cliente
         ET.SubElement(ide_declarado, "EnderecoLivre").text = endereco
         ET.SubElement(ide_declarado, "DataNasc").text = data_nascimento
-
+        
+        for tag in ["PaisEndereco", "PaisResid", "PaisNacionalidade"]:
+            pais = ET.SubElement(ide_declarado, tag)
+            ET.SubElement(pais, "Pais").text = "BR"
+        
         mes_caixa = ET.SubElement(evt_mov, "mesCaixa")
-        ET.SubElement(mes_caixa, "anoMesCaixa").text = "202407"
+        ET.SubElement(mes_caixa, "anoMesCaixa").text = "202408"#isso é manual 
 
         mov_op_fin = ET.SubElement(mes_caixa, "movOpFin")
         conta = ET.SubElement(mov_op_fin, "Conta")
         info_conta = ET.SubElement(conta, "infoConta")
+        
+        reportavel = ET.SubElement(info_conta, "Reportavel")
+        ET.SubElement(reportavel, "Pais").text = "BR"
+
         ET.SubElement(info_conta, "tpConta").text = "3"
+        ET.SubElement(info_conta, "subTpConta").text = "302"
         ET.SubElement(info_conta, "tpNumConta").text = "OECD601"
         ET.SubElement(info_conta, "numConta").text = f"BR{sinacor}{cnpj_fundo}"
+        ET.SubElement(info_conta, "tpRelacaoDeclarado").text = "1"
+        ET.SubElement(info_conta, "NoTitulares").text = "1"
+        
+        fundo = ET.SubElement(info_conta, "Fundo")
+        ET.SubElement(fundo, "GIIN").text = ""
+        ET.SubElement(fundo, "CNPJ").text = cnpj_fundo
         
         balanco = ET.SubElement(info_conta, "BalancoConta")
-        ET.SubElement(balanco, "totPgtosAcum").text = f"{tot_pgtos_acum:.2f}".replace('.', ',')
+        ET.SubElement(balanco, "totCreditos").text = f"{tot_creditos:.2f}".replace('.', ',')
+        ET.SubElement(balanco, "totDebitos").text = f"{tot_debitos:.2f}".replace('.', ',')
+        ET.SubElement(balanco, "totCreditosMesmaTitularidade").text = "0,00"
+        ET.SubElement(balanco, "totDebitosMesmaTitularidade").text = "0,00"
+
+        pgtos_acum = ET.SubElement(info_conta, "PgtosAcum")
+        ET.SubElement(pgtos_acum, "tpPgto").text = "999"
+        ET.SubElement(pgtos_acum, "totPgtosAcum").text = f"{tot_pgtos_acum:.2f}".replace('.', ',')
     
     tree = ET.ElementTree(root)
     tree.write(output_path, encoding='utf-8', xml_declaration=True)
