@@ -84,7 +84,7 @@ def create_xml(converted_df, base_df, saldos_df, output_path, selected_month):
         ET.SubElement(ide_declarante, "cnpjDeclarante").text = "04257795000179"
 
         ide_declarado = ET.SubElement(evt_mov, "ideDeclarado")
-        ET.SubElement(ide_declarado, "tpNI").text = "1"
+        ET.SubElement(ide_declarado, "tpNI").text = "1" if len(cpf) <= 12 else "2"
         ET.SubElement(ide_declarado, "NIDeclarado").text = cpf
         ET.SubElement(ide_declarado, "NomeDeclarado").text = nome_cliente
         ET.SubElement(ide_declarado, "EnderecoLivre").text = endereco
@@ -95,7 +95,7 @@ def create_xml(converted_df, base_df, saldos_df, output_path, selected_month):
             ET.SubElement(pais, "Pais").text = "BR"
         
         mes_caixa = ET.SubElement(evt_mov, "mesCaixa")
-        ET.SubElement(mes_caixa, "anoMesCaixa").text = "202408"#isso é manual 
+        ET.SubElement(mes_caixa, "anoMesCaixa").text = "202409"#isso é manual 
 
         mov_op_fin = ET.SubElement(mes_caixa, "movOpFin")
         conta = ET.SubElement(mov_op_fin, "Conta")
